@@ -25,7 +25,7 @@ export async function requireSession(requiredRole?: 'admin' | 'employee'): Promi
     redirect('/login');
   }
 
-  const typedSession = session as Session;
+  const typedSession = session as unknown as Session;
 
   if (requiredRole === 'admin' && typedSession.role !== 'admin') {
     redirect('/policies');
