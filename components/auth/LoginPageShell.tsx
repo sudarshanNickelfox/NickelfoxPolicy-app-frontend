@@ -1,12 +1,19 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, type Transition, type TargetAndTransition } from 'framer-motion';
 
 interface LoginPageShellProps {
   children: React.ReactNode;
 }
 
-const ORB_CONFIG = [
+interface OrbConfig {
+  key: string;
+  className: string;
+  animate: TargetAndTransition;
+  transition: Transition;
+}
+
+const ORB_CONFIG: OrbConfig[] = [
   {
     key: 'violet',
     className:
