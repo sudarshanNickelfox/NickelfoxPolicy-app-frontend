@@ -14,7 +14,7 @@ const nextConfig = {
               "default-src 'self'",
               "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
               "style-src 'self' 'unsafe-inline'",
-              "frame-src 'self' https://view.officeapps.live.com",
+              "frame-src 'self' https://view.officeapps.live.com https://*.supabase.co",
               "img-src 'self' data: https:",
               "connect-src 'self' http://localhost:4000 https://nickelfoxpolicy-app-serverend.onrender.com https://*.supabase.co https://graph.microsoft.com",
             ].join('; '),
