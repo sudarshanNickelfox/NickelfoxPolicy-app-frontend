@@ -147,7 +147,7 @@ export function Sidebar({ session, mobileOpen = false, onMobileClose }: SidebarP
       animate={{ width: isCollapsed ? 64 : 256 }}
       transition={{ duration: 0.25, ease: 'easeInOut' }}
       className={cn(
-        'flex h-full flex-col border-r border-blue-800 bg-blue-700 overflow-hidden z-30',
+        'flex h-full flex-col border-r border-[#5E4E6B] bg-[#3E2B4D] overflow-hidden z-30',
         // Desktop: always visible
         'hidden md:flex',
         // Mobile: fixed drawer overlay when open
@@ -156,7 +156,7 @@ export function Sidebar({ session, mobileOpen = false, onMobileClose }: SidebarP
       aria-label="Main navigation"
     >
       {/* Logo / Header */}
-      <div className="flex h-16 items-center border-b border-blue-800 px-4 overflow-hidden">
+      <div className="flex h-16 items-center border-b border-[#5E4E6B] px-4 overflow-hidden">
         <div className="flex flex-1 items-center gap-2 min-w-0">
           <span className={cn('text-white', isCollapsed ? 'mx-auto' : '')}>
             <ShieldIcon />
@@ -181,7 +181,7 @@ export function Sidebar({ session, mobileOpen = false, onMobileClose }: SidebarP
           <button
             onClick={onMobileClose}
             aria-label="Close navigation"
-            className="ml-auto flex md:hidden items-center justify-center rounded-lg p-1.5 text-blue-200 hover:bg-blue-600 hover:text-white"
+            className="ml-auto flex md:hidden items-center justify-center rounded-lg p-1.5 text-[#C8C0D0] hover:bg-[rgba(255,255,255,0.08)] hover:text-white"
           >
             <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -210,12 +210,12 @@ export function Sidebar({ session, mobileOpen = false, onMobileClose }: SidebarP
                     'flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors',
                     isCollapsed ? 'justify-center' : '',
                     isActive
-                      ? 'bg-blue-800 text-white'
-                      : 'text-blue-100 hover:bg-blue-600 hover:text-white',
+                      ? 'bg-[#4E3A5D] text-white'
+                      : 'text-[#C8C0D0] hover:bg-white/10 hover:text-white',
                   )}
                 >
                   <span
-                    className={cn('shrink-0', isActive ? 'text-white' : 'text-blue-200')}
+                    className={cn('shrink-0', isActive ? 'text-white' : 'text-[#C8C0D0]')}
                     aria-hidden="true"
                   >
                     {item.icon}
@@ -235,13 +235,13 @@ export function Sidebar({ session, mobileOpen = false, onMobileClose }: SidebarP
       </nav>
 
       {/* Toggle button */}
-      <div className="border-t border-blue-800 px-2 py-2">
+      <div className="border-t border-[#5E4E6B] px-2 py-2">
         <button
           onClick={() => setIsCollapsed((v) => !v)}
           aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
           className={cn(
-            'flex w-full items-center rounded-lg px-3 py-2 text-xs font-medium text-blue-200',
-            'hover:bg-blue-600 hover:text-white transition-colors',
+            'flex w-full items-center rounded-lg px-3 py-2 text-xs font-medium text-[#9E90A8]',
+            'hover:bg-[rgba(255,255,255,0.08)] hover:text-white transition-colors',
             isCollapsed ? 'justify-center' : 'justify-between',
           )}
         >
@@ -251,7 +251,7 @@ export function Sidebar({ session, mobileOpen = false, onMobileClose }: SidebarP
       </div>
 
       {/* User info */}
-      <div className="border-t border-blue-800 bg-blue-800 px-2 py-3">
+      <div className="border-t border-[#5E4E6B] bg-[#2E1F3C] px-2 py-3">
         <div
           className={cn(
             'flex items-center gap-3 rounded-lg px-3 py-2',
@@ -267,7 +267,7 @@ export function Sidebar({ session, mobileOpen = false, onMobileClose }: SidebarP
             />
           ) : (
             <div
-              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-600 text-white text-sm font-semibold"
+              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#4E3A5D] text-white text-sm font-semibold"
               aria-hidden="true"
             >
               {avatarInitial}
@@ -284,10 +284,10 @@ export function Sidebar({ session, mobileOpen = false, onMobileClose }: SidebarP
                 transition={{ duration: 0.2 }}
                 className="min-w-0 overflow-hidden"
               >
-                <p className="truncate text-sm font-medium text-blue-100 whitespace-nowrap">
+                <p className="truncate text-sm font-medium text-[#C8C0D0] whitespace-nowrap">
                   {session.user.name ?? 'User'}
                 </p>
-                <p className="truncate text-xs text-blue-300 whitespace-nowrap">
+                <p className="truncate text-xs text-[#9E90A8] whitespace-nowrap">
                   {session.user.email}
                 </p>
               </motion.div>

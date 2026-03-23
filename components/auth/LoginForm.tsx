@@ -10,14 +10,11 @@ export function LoginForm() {
 
   return (
     <div className="flex flex-col gap-6">
-      <h2 className="text-center text-base font-semibold text-white">
-        Sign in with your company account
-      </h2>
-
       <motion.button
         type="button"
         onClick={() => signIn('azure-ad', { callbackUrl })}
-        className="flex w-full items-center justify-center gap-3 rounded-lg border border-white/30 bg-white/20 px-4 py-3 text-sm font-medium text-white shadow-sm hover:bg-white/30 focus:outline-none focus:ring-2 focus:ring-white/30 transition-colors"
+        className="flex w-full items-center justify-center gap-3 rounded-xl px-6 py-3.5 text-sm font-semibold text-white transition-all focus:outline-none focus:ring-2 focus:ring-[#2F5BE7] focus:ring-offset-2"
+        style={{ background: 'linear-gradient(135deg, #2F5BE7 0%, #4070f0 100%)', boxShadow: '0 4px 16px rgba(47,91,231,0.35)' }}
         whileHover={{ scale: 1.01 }}
         whileTap={{ scale: 0.98 }}
       >

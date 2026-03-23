@@ -16,7 +16,7 @@ export function Header({ title, session, onMenuToggle }: HeaderProps) {
 
   return (
     <header
-      className="flex h-16 items-center justify-between border-b border-blue-700 bg-blue-600 px-4 sm:px-6"
+      className="flex h-16 items-center justify-between border-b border-slate-200 bg-white px-4 sm:px-6"
       role="banner"
     >
       <div className="flex items-center gap-3">
@@ -24,19 +24,19 @@ export function Header({ title, session, onMenuToggle }: HeaderProps) {
         <button
           onClick={onMenuToggle}
           aria-label="Open navigation menu"
-          className="flex md:hidden items-center justify-center rounded-lg p-2 text-blue-100 hover:bg-blue-700 hover:text-white transition-colors"
+          className="flex md:hidden items-center justify-center rounded-lg p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-900 transition-colors"
         >
           <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
           </svg>
         </button>
-        <h1 className="text-lg sm:text-xl font-semibold text-white">{title}</h1>
+        <h1 className="text-lg sm:text-xl font-bold text-slate-900">{title}</h1>
       </div>
 
       <div className="flex items-center gap-2 sm:gap-4">
-        <span className="hidden sm:inline text-sm text-blue-100">
+        <span className="hidden sm:inline text-sm text-slate-600">
           {session.role === 'admin' && (
-            <span className="mr-2 rounded-full bg-blue-800 px-2.5 py-0.5 text-xs font-medium text-white">
+            <span className="mr-2 rounded-full bg-[#3E2B4D] px-2.5 py-0.5 text-xs font-medium text-white">
               Admin
             </span>
           )}
@@ -46,7 +46,7 @@ export function Header({ title, session, onMenuToggle }: HeaderProps) {
         <button
           onClick={toggle}
           aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
-          className="rounded-lg p-2 text-blue-100 hover:bg-blue-700 hover:text-white transition-colors"
+          className="rounded-lg p-2 text-slate-500 hover:bg-slate-100 hover:text-slate-900 transition-colors"
         >
           {theme === 'light' ? (
             <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24" aria-hidden="true">
