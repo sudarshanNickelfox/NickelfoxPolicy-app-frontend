@@ -70,8 +70,8 @@ function generateQuestions(policies: Policy[]): Question[] {
   const questions: Question[] = [];
   const pool = shuffle(policies).slice(0, 5);
 
-  const allDepartments = [...new Set(policies.map((p) => p.department).filter(Boolean))];
-  const allCategories = [...new Set(policies.map((p) => p.category).filter(Boolean))];
+  const allDepartments = Array.from(new Set(policies.map((p) => p.department).filter(Boolean)));
+  const allCategories = Array.from(new Set(policies.map((p) => p.category).filter(Boolean)));
   const allTitles = policies.map((p) => p.title);
 
   const TYPES = ['department', 'category', 'version', 'which_policy', 'date'] as const;
