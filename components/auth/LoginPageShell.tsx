@@ -35,7 +35,7 @@ const ORB_CONFIG = [
     animate: { y: [0, -18, 0] },
     transition: { duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 2 },
   },
-] as const;
+];
 
 export function LoginPageShell({ children }: LoginPageShellProps) {
   return (
