@@ -109,33 +109,37 @@ function ComplianceSummaryTable({ data, isLoading, error }: ComplianceSummaryTab
             <table className="w-full text-sm" aria-label="Policy compliance summary">
               <thead>
                 <tr className="border-b border-slate-100 bg-slate-50">
-                  {['Policy', 'Version', 'Acknowledged', 'Pending', 'Compliance Rate'].map(
-                    (col) => (
-                      <th
-                        key={col}
-                        scope="col"
-                        className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wide text-slate-400"
-                      >
-                        {col}
-                      </th>
-                    ),
-                  )}
+                  {[
+                    { label: 'Policy', cls: 'px-4 sm:px-6 py-3' },
+                    { label: 'Version', cls: 'hidden sm:table-cell px-6 py-3' },
+                    { label: 'Acknowledged', cls: 'hidden md:table-cell px-6 py-3' },
+                    { label: 'Pending', cls: 'hidden md:table-cell px-6 py-3' },
+                    { label: 'Compliance Rate', cls: 'px-4 sm:px-6 py-3' },
+                  ].map((col) => (
+                    <th
+                      key={col.label}
+                      scope="col"
+                      className={`${col.cls} text-left text-xs font-medium uppercase tracking-wide text-slate-400`}
+                    >
+                      {col.label}
+                    </th>
+                  ))}
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-50">
                 {data.map((row) => (
                   <tr key={row.policy_id} className="hover:bg-slate-50">
-                    <td className="px-6 py-3 font-medium text-slate-900 max-w-xs">
+                    <td className="px-4 sm:px-6 py-3 font-medium text-slate-900 max-w-xs">
                       <span className="line-clamp-1">{row.policy_title}</span>
                     </td>
-                    <td className="px-6 py-3 text-slate-500">v{row.policy_version}</td>
-                    <td className="px-6 py-3">
+                    <td className="hidden sm:table-cell px-6 py-3 text-slate-500">v{row.policy_version}</td>
+                    <td className="hidden md:table-cell px-6 py-3">
                       <span className="font-semibold text-green-600">
                         {row.acknowledged_count}
                       </span>
                       <span className="text-slate-400"> / {row.total_users}</span>
                     </td>
-                    <td className="px-6 py-3">
+                    <td className="hidden md:table-cell px-6 py-3">
                       <span
                         className={
                           row.pending_count > 0 ? 'font-semibold text-red-500' : 'text-slate-400'
@@ -144,7 +148,7 @@ function ComplianceSummaryTable({ data, isLoading, error }: ComplianceSummaryTab
                         {row.pending_count}
                       </span>
                     </td>
-                    <td className="px-6 py-3 min-w-[200px]">
+                    <td className="px-4 sm:px-6 py-3 min-w-[140px] sm:min-w-[200px]">
                       <ComplianceBar rate={row.compliance_rate} />
                     </td>
                   </tr>
@@ -218,13 +222,19 @@ function RecentAcknowledgementsTable({
             <table className="w-full text-sm" aria-label="Recent acknowledgements">
               <thead>
                 <tr className="border-b border-slate-100 bg-slate-50">
-                  {['User', 'Email', 'Policy', 'Version', 'Acknowledged At'].map((col) => (
+                  {[
+                    { label: 'User', cls: 'px-4 sm:px-6 py-3' },
+                    { label: 'Email', cls: 'hidden md:table-cell px-6 py-3' },
+                    { label: 'Policy', cls: 'hidden sm:table-cell px-6 py-3' },
+                    { label: 'Version', cls: 'hidden lg:table-cell px-6 py-3' },
+                    { label: 'Acknowledged At', cls: 'hidden lg:table-cell px-6 py-3' },
+                  ].map((col) => (
                     <th
-                      key={col}
+                      key={col.label}
                       scope="col"
-                      className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wide text-slate-400"
+                      className={`${col.cls} text-left text-xs font-medium uppercase tracking-wide text-slate-400`}
                     >
-                      {col}
+                      {col.label}
                     </th>
                   ))}
                 </tr>
@@ -232,13 +242,13 @@ function RecentAcknowledgementsTable({
               <tbody className="divide-y divide-slate-50">
                 {data.map((row, idx) => (
                   <tr key={`${row.user_id}-${row.policy_id}-${idx}`} className="hover:bg-slate-50">
-                    <td className="px-6 py-3 font-medium text-slate-900">{row.user_name}</td>
-                    <td className="px-6 py-3 text-slate-500">{row.user_email}</td>
-                    <td className="px-6 py-3 text-slate-700 max-w-xs">
+                    <td className="px-4 sm:px-6 py-3 font-medium text-slate-900">{row.user_name}</td>
+                    <td className="hidden md:table-cell px-6 py-3 text-slate-500">{row.user_email}</td>
+                    <td className="hidden sm:table-cell px-6 py-3 text-slate-700 max-w-xs">
                       <span className="line-clamp-1">{row.policy_title}</span>
                     </td>
-                    <td className="px-6 py-3 text-slate-500">v{row.policy_version}</td>
-                    <td className="px-6 py-3 text-slate-500">
+                    <td className="hidden lg:table-cell px-6 py-3 text-slate-500">v{row.policy_version}</td>
+                    <td className="hidden lg:table-cell px-6 py-3 text-slate-500">
                       <time dateTime={row.acknowledged_at}>
                         {new Date(row.acknowledged_at).toLocaleString('en-US', {
                           year: 'numeric',

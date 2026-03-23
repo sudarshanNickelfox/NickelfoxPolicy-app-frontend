@@ -28,6 +28,9 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# ─── Claude Code ──────────────────────────────────────────────────────────────
+.claude/
+
 # ─── OS / Editor ──────────────────────────────────────────────────────────────
 .DS_Store
 Thumbs.db

@@ -114,9 +114,11 @@ const navItems: NavItem[] = [
 
 interface SidebarProps {
   session: Session;
+  mobileOpen?: boolean;
+  onMobileClose?: () => void;
 }
 
-export function Sidebar({ session }: SidebarProps) {
+export function Sidebar({ session, mobileOpen = false, onMobileClose }: SidebarProps) {
   const pathname = usePathname();
   const isAdmin = session.role === 'admin';
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -127,12 +129,18 @@ export function Sidebar({ session }: SidebarProps) {
     <motion.aside
       animate={{ width: isCollapsed ? 64 : 256 }}
       transition={{ duration: 0.25, ease: 'easeInOut' }}
-      className="flex h-full flex-col border-r border-blue-800 bg-blue-700 overflow-hidden"
+      className={cn(
+        'flex h-full flex-col border-r border-blue-800 bg-blue-700 overflow-hidden z-30',
+        // Desktop: always visible
+        'hidden md:flex',
+        // Mobile: fixed drawer overlay when open
+        mobileOpen && 'fixed inset-y-0 left-0 flex',
+      )}
       aria-label="Main navigation"
     >
       {/* Logo / Header */}
       <div className="flex h-16 items-center border-b border-blue-800 px-4 overflow-hidden">
-        <div className="flex items-center gap-2 min-w-0">
+        <div className="flex flex-1 items-center gap-2 min-w-0">
           <span className={cn('text-white', isCollapsed ? 'mx-auto' : '')}>
             <ShieldIcon />
           </span>
@@ -151,6 +159,18 @@ export function Sidebar({ session }: SidebarProps) {
             )}
           </AnimatePresence>
         </div>
+        {/* Mobile close button */}
+        {onMobileClose && (
+          <button
+            onClick={onMobileClose}
+            aria-label="Close navigation"
+            className="ml-auto flex md:hidden items-center justify-center rounded-lg p-1.5 text-blue-200 hover:bg-blue-600 hover:text-white"
+          >
+            <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        )}
       </div>
 
       {/* Nav */}

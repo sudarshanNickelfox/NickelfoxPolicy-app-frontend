@@ -232,7 +232,7 @@ export function AdminPoliciesClient({ accessToken }: AdminPoliciesClientProps) {
     <>
       <Card>
         <CardHeader>
-          <div className="flex items-center justify-between">
+          <div className="flex flex-wrap items-center justify-between gap-2">
             <CardTitle>All Policies</CardTitle>
             <Button
               variant="primary"
@@ -285,35 +285,40 @@ export function AdminPoliciesClient({ accessToken }: AdminPoliciesClientProps) {
               <table className="w-full text-sm" aria-label="Policies list">
                 <thead>
                   <tr className="border-b border-slate-100 bg-slate-50">
-                    {['Title', 'Category', 'Department', 'Version', 'Effective Date', ''].map(
-                      (col) => (
-                        <th
-                          key={col}
-                          scope="col"
-                          className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wide text-slate-400"
-                        >
-                          {col}
-                        </th>
-                      ),
-                    )}
+                    {[
+                      { label: 'Title', cls: 'px-4 sm:px-6 py-3' },
+                      { label: 'Category', cls: 'hidden sm:table-cell px-6 py-3' },
+                      { label: 'Department', cls: 'hidden md:table-cell px-6 py-3' },
+                      { label: 'Version', cls: 'hidden lg:table-cell px-6 py-3' },
+                      { label: 'Effective Date', cls: 'hidden lg:table-cell px-6 py-3' },
+                      { label: '', cls: 'px-4 sm:px-6 py-3' },
+                    ].map((col) => (
+                      <th
+                        key={col.label}
+                        scope="col"
+                        className={`${col.cls} text-left text-xs font-medium uppercase tracking-wide text-slate-400`}
+                      >
+                        {col.label}
+                      </th>
+                    ))}
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-50">
                   {policies.map((policy) => (
                     <tr key={policy.id} className="hover:bg-slate-50">
-                      <td className="px-6 py-3 font-medium text-slate-900">
-                        <div className="flex items-center gap-2">
-                          {policy.title}
+                      <td className="px-4 sm:px-6 py-3 font-medium text-slate-900">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="line-clamp-1">{policy.title}</span>
                           {policy.isArchived && <Badge variant="warning">Archived</Badge>}
                           {policy.requiresAcknowledgement && (
                             <Badge variant="info">Ack required</Badge>
                           )}
                         </div>
                       </td>
-                      <td className="px-6 py-3 text-slate-500">{policy.category}</td>
-                      <td className="px-6 py-3 text-slate-500">{policy.department}</td>
-                      <td className="px-6 py-3 text-slate-500">v{policy.version}</td>
-                      <td className="px-6 py-3 text-slate-500">
+                      <td className="hidden sm:table-cell px-6 py-3 text-slate-500">{policy.category}</td>
+                      <td className="hidden md:table-cell px-6 py-3 text-slate-500">{policy.department}</td>
+                      <td className="hidden lg:table-cell px-6 py-3 text-slate-500">v{policy.version}</td>
+                      <td className="hidden lg:table-cell px-6 py-3 text-slate-500">
                         <time dateTime={policy.effectiveDate}>
                           {new Date(policy.effectiveDate).toLocaleDateString('en-US', {
                             year: 'numeric',
@@ -322,7 +327,7 @@ export function AdminPoliciesClient({ accessToken }: AdminPoliciesClientProps) {
                           })}
                         </time>
                       </td>
-                      <td className="px-6 py-3 text-right">
+                      <td className="px-4 sm:px-6 py-3 text-right">
                         <Button
                           variant="danger"
                           size="sm"

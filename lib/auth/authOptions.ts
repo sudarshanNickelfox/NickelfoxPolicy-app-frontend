@@ -1,6 +1,5 @@
 import type { NextAuthOptions } from 'next-auth';
 import AzureADProvider from 'next-auth/providers/azure-ad';
-import CredentialsProvider from 'next-auth/providers/credentials';
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -8,29 +7,6 @@ export const authOptions: NextAuthOptions = {
       clientId: process.env.AZURE_AD_CLIENT_ID!,
       clientSecret: process.env.AZURE_AD_CLIENT_SECRET!,
       tenantId: process.env.AZURE_AD_TENANT_ID!,
-    }),
-    CredentialsProvider({
-      name: 'Credentials',
-      credentials: {
-        email: { label: 'Email', type: 'email' },
-        password: { label: 'Password', type: 'password' },
-      },
-      async authorize(credentials) {
-        try {
-          const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:4000'}/api/auth/login`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ email: credentials?.email, password: credentials?.password }),
-          });
-          if (!res.ok) return null;
-          const json = await res.json();
-          if (!json.success) return null;
-          const { token, user } = json.data;
-          return { id: user.id, name: user.name, email: user.email, role: user.role, accessToken: token };
-        } catch {
-          return null;
-        }
-      },
     }),
   ],
   pages: {

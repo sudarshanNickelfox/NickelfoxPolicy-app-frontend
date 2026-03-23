@@ -17,10 +17,10 @@ export default async function LoginPage() {
       <LoginPanel />
 
       {/* Right login form panel */}
-      <div className="flex flex-1 items-center justify-center p-8">
+      <div className="flex flex-1 items-center justify-center p-4 sm:p-8">
         <div className="w-full max-w-md">
           {/* Mobile-only logo */}
-          <div className="mb-8 flex flex-col items-center md:hidden">
+          <div className="mb-6 flex flex-col items-center md:hidden">
             <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm mb-4">
               <svg
                 className="h-8 w-8 text-white"
@@ -42,7 +42,7 @@ export default async function LoginPage() {
           </div>
 
           {/* Glass form card */}
-          <div className="rounded-2xl backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl p-8">
+          <div className="rounded-2xl backdrop-blur-xl bg-white/10 border border-white/20 shadow-2xl p-6 sm:p-8">
             <LoginForm />
           </div>
 

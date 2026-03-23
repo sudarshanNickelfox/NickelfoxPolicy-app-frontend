@@ -7,7 +7,7 @@ export default async function AdminPage() {
   const session = await requireSession('admin');
 
   return (
-    <div className="p-6">
+    <div className="p-4 sm:p-6">
       <div className="mb-6">
         <h2 className="text-2xl font-bold text-slate-900">Admin Dashboard</h2>
         <p className="mt-1 text-sm text-slate-500">

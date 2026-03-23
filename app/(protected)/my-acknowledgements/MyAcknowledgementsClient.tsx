@@ -71,9 +71,9 @@ export function MyAcknowledgementsClient() {
   return (
     <Card>
       <CardHeader>
-        <div className="flex items-center justify-between">
+        <div className="flex flex-wrap items-center justify-between gap-2">
           <CardTitle>Acknowledgement History</CardTitle>
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             {archivedCount > 0 && (
               <Button
                 variant="ghost"
@@ -153,25 +153,25 @@ export function MyAcknowledgementsClient() {
                 <tr className="border-b border-slate-200 bg-slate-50">
                   <th
                     scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wide text-slate-500"
+                    className="px-4 sm:px-6 py-3 text-left text-xs font-medium uppercase tracking-wide text-slate-500"
                   >
                     Policy
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wide text-slate-500"
+                    className="hidden sm:table-cell px-6 py-3 text-left text-xs font-medium uppercase tracking-wide text-slate-500"
                   >
                     Version
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wide text-slate-500"
+                    className="px-4 sm:px-6 py-3 text-left text-xs font-medium uppercase tracking-wide text-slate-500"
                   >
                     Status
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wide text-slate-500"
+                    className="hidden md:table-cell px-6 py-3 text-left text-xs font-medium uppercase tracking-wide text-slate-500"
                   >
                     Acknowledged at
                   </th>
@@ -180,7 +180,7 @@ export function MyAcknowledgementsClient() {
               <tbody className="divide-y divide-slate-200">
                 {displayedAcknowledgements.map((ack) => (
                   <tr key={ack.id} className="hover:bg-slate-50">
-                    <td className="px-6 py-4">
+                    <td className="px-4 sm:px-6 py-3 sm:py-4">
                       <Link
                         href={`/policies/${ack.policyId}`}
                         className="font-medium text-indigo-600 hover:text-indigo-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 rounded"
@@ -188,15 +188,15 @@ export function MyAcknowledgementsClient() {
                         {ack.policyTitle}
                       </Link>
                     </td>
-                    <td className="px-6 py-4 text-slate-500">v{ack.policyVersion}</td>
-                    <td className="px-6 py-4">
+                    <td className="hidden sm:table-cell px-6 py-3 sm:py-4 text-slate-500">v{ack.policyVersion}</td>
+                    <td className="px-4 sm:px-6 py-3 sm:py-4">
                       {ack.isArchived ? (
                         <Badge variant="danger">Archived</Badge>
                       ) : (
                         <Badge variant="success">Acknowledged</Badge>
                       )}
                     </td>
-                    <td className="px-6 py-4 text-slate-500">
+                    <td className="hidden md:table-cell px-6 py-3 sm:py-4 text-slate-500">
                       <time dateTime={ack.acknowledgedAt}>
                         {new Date(ack.acknowledgedAt).toLocaleString('en-US', {
                           year: 'numeric',

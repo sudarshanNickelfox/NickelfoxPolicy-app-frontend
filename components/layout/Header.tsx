@@ -8,20 +8,33 @@ import type { Session } from '@/types';
 interface HeaderProps {
   title: string;
   session: Session;
+  onMenuToggle?: () => void;
 }
 
-export function Header({ title, session }: HeaderProps) {
+export function Header({ title, session, onMenuToggle }: HeaderProps) {
   const { theme, toggle } = useTheme();
 
   return (
     <header
-      className="flex h-16 items-center justify-between border-b border-blue-700 bg-blue-600 px-6"
+      className="flex h-16 items-center justify-between border-b border-blue-700 bg-blue-600 px-4 sm:px-6"
       role="banner"
     >
-      <h1 className="text-xl font-semibold text-white">{title}</h1>
+      <div className="flex items-center gap-3">
+        {/* Hamburger — mobile only */}
+        <button
+          onClick={onMenuToggle}
+          aria-label="Open navigation menu"
+          className="flex md:hidden items-center justify-center rounded-lg p-2 text-blue-100 hover:bg-blue-700 hover:text-white transition-colors"
+        >
+          <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+        <h1 className="text-lg sm:text-xl font-semibold text-white">{title}</h1>
+      </div>
 
-      <div className="flex items-center gap-4">
-        <span className="text-sm text-blue-100">
+      <div className="flex items-center gap-2 sm:gap-4">
+        <span className="hidden sm:inline text-sm text-blue-100">
           {session.role === 'admin' && (
             <span className="mr-2 rounded-full bg-blue-800 px-2.5 py-0.5 text-xs font-medium text-white">
               Admin
